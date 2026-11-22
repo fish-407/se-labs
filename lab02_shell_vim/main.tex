@@ -1,0 +1,67 @@
+\documentclass[10.5pt]{ctexart}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+
+\setlength\parindent{2em}
+
+\title{Shell与vim练习}
+\author{张中瑞}
+\date{9月10日}
+
+\begin{document}
+\maketitle
+
+\section{练习内容}
+\subsection{shell练习内容}
+\begin{enumerate}
+    \item 如何查看当前目录内容：ls，列出当前文件夹下的所有文件 / 目录；加参数ls -l可查看详细信息（权限、大小、修改时间）。
+    \item 如何切换目录：cd 目标目录路径，如cd /home/user/Documents（切换到文档文件夹），cd ..（返回上一级目录）。
+    \item 如何创建空文件：touch test.txt，在当前目录生成名为test.txt的空文本文件。
+    \item 如何创建文件夹：mkdir myfolder，在当前目录新建名为myfolder的文件夹；mkdir -p a/b/c可创建多级嵌套文件夹。
+    \item 如何复制文件：cp 源文件 目标路径，如cp test.txt myfolder/，将test.txt复制到myfolder文件夹中。
+    \item 如何移动或重命名文件夹：mv 源文件 目标，如mv test.txt myfolder/new.txt（移动并改名为new.txt），mv oldname.txt newname.txt（仅重命名）。
+    \item 如何删除文件：rm test.txt，删除当前目录的test.txt；删除文件夹需加rm -r myfolder（-r表示递归删除）。
+    \item 如何查找文件内容：grep "关键词" 文件名，如grep "hello" test.txt，在test.txt中找含 “hello” 的行。
+    \item 如何查看文件内容 ：cat test.txt（一次性显示全文件），head -5 test.txt（显示前 5 行），tail -3 test.txt（显示最后 3 行）。
+    \item 如何修改文件权限 ：cat test.txt（一次性显示全文件），head -5 test.txt（显示前 5 行），tail -3 test.txt（显示最后 3 行）。
+    \end{enumerate}
+\subsection{vim练习内容}
+\begin{enumerate} 
+    \item 新建 / 打开文件：在 Shell 中输入vim note.txt，若note.txt存在则打开，不存在则新建（进入 Vim 普通模式）。
+    \item 进入插入模式编辑：打开文件后，按i键（光标前插入）或a键（光标后插入），底部显示 “-- INSERT --”，即可像记事本一样输入文字。
+    \item 保存文件：编辑完后按Esc返回普通模式，再按:进入命令模式，输入w（即:w），按回车，底部显示 “已写入”，完成保存。
+    \item 保存并退出 Vim：普通模式下按:，输入wq（即:wq），回车，保存文件并退出 Vim，回到 Shell 界面。
+    \item 不保存强制退出：若编辑后不想保存，普通模式下按:，输入q!（即:q!），回车，强制退出且不保存修改。
+    \item 删除单个字符：普通模式下，将光标移到要删的字符上，按x键，直接删除该字符。
+    \item 删除整行：普通模式下，光标在某行任意位置，按dd键（连续按两次d），直接删除当前行。
+    \item 查找关键词：普通模式下按/，输入要找的关键词（如/apple），按回车，光标会跳转到第一个含 “apple” 的位置；按n键跳转到下一个，N跳转到上一个。
+    \item 跳转到文件开头 / 结尾：普通模式下，按gg（连续按g两次），光标直接跳转到文件第一行；按G（大写G），光标跳转到文件最后一行。
+    \item 替换文字：普通模式下按:，输入s/旧内容/新内容（如:s/cat/dog），回车，仅替换当前行第一个 “cat” 为 “dog”；若要替换当前行所有 “cat”，则输入:s/cat/dog/g（末尾加g，即 “global”）。
+\end{enumerate}
+\section{练习结果}
+\subsection{shell}
+\begin{itemize}
+\item 用ls和ls -l查看目录，前者展示名称，后者呈现详细信息；cd切换目录，cd ..返回上级；touch创建空文件，mkdir新建文件夹，mkdir -p可创建多级目录。
+\item cp完成文件复制；mv能移动或重命名文件；rm删除文件，rm -r删除目录。grep查找文件中关键词所在行；cat显示全文件，head、tail分别查看文件前几行和后几行；chmod修改文件权限。
+\end{itemize}
+
+\subsection{vim}
+\begin{itemize}
+\item vim可新建或打开文件，按i、a进入插入模式编辑。编辑后按Esc回普通模式，:w保存，:wq保存并退出，:q!不保存强制退出。
+\item 普通模式下，x删单个字符，dd删整行；/关键词查找，n、N跳转；gg、G跳转文件首尾；:s替换文字，末尾加g可替换当前行所有匹配项。
+\end{itemize}
+
+\section{解题感悟}
+\begin{enumerate}
+    \item Shell 操作依赖路径准确性和参数适用性，rm -r等命令操作不可逆需谨慎。Vim 模式切换是关键，各模式对应不同操作，熟练掌握能大幅提升文本编辑效率 。
+    \item Vim 模式切换是关键，各模式对应不同操作，能大幅提升文本编辑效率 。
+\end{enumerate}
+
+
+\end{document}
+
+
+
+

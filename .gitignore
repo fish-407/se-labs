@@ -1,0 +1,28 @@
+# LaTeX 编译中间文件
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.xdv
+*.nav
+*.snm
+*.vrb
+
+# 可选：如需提交编译好的 PDF，删除下面这行
+# *.pdf
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

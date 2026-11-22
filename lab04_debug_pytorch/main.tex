@@ -1,0 +1,101 @@
+\documentclass[10.5pt]{ctexart}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+
+\setlength\parindent{2em}
+
+\title{调试及性能分析、元编程演示实验与PyTorch 编程}
+\author{张中瑞}
+\date{9月23日}
+
+\begin{document}
+\maketitle
+
+\section{练习内容}
+\subsection{调试及性能分析练习}
+\begin{enumerate}
+    \item 查看超级用户登录及操作记录：查看最近一天的sudo操作记录
+sudo journalctl --since "1 day ago" COMM=sudo；查看最近一天的root用户登录记录：
+sudo journalctl --since "1 day ago" USER=root
+    \item PDB 调试工具实践：(l)ist - 查看代码、
+(n)ext - 执行下一行、
+(s)tep - 进入函数、
+(b)reak 行号 - 设置断点、
+(c)ontinue - 继续执行到下一个断点、
+(p)rint 变量 - 查看变量值、
+(q)uit - 退出调试。
+    \item  端口占用处理：python -m http.server 4444；
+    lsof -i :4444；kill 1234。
+    \item  网络请求分析：打开 Wireshark，选择合适的网络接口；
+设置过滤器：http 或 ip.addr == ipinfo.io的IP；
+在终端执行：curl ipinfo.io；
+在 Wireshark 中观察：
+HTTP 请求报文、
+HTTP 响应报文。
+    \item 基于 GitHub Pages 的自动发布与 Shellcheck 检查:1: 创建 GitHub Pages 页面,新建仓库，添加 index.html 作为主页,在仓库设置中开启 GitHub Pages，选择 main 分支作为源。2: 添加 GitHub Action 执行 Shellcheck
+在 .github/workflows/shellcheck.yml 创建工作流。
+    \end{enumerate}
+\subsection{元编程演示实验练习}
+\begin{enumerate} 
+    \item Makefile clean 目标：用.PHONY 声明伪目标，删除 paper.pdf 及构建临时文件，可结合 git ls-files 清理未跟踪文件
+    \item Rust 版本语法：~ 限制 minor 版本，* 匹配任意修订版，比较符精确控范围，多版本指定允许特定版本。
+    \item pre-commit 钩子：执行 make paper.pdf，构建失败则拒绝提交，避免不可构建版本入库
+    \item GitHub Pages：创建页面并配置自动发布，添加 Action 用 shellcheck 检查所有 shell 文件
+    \item 自定义 GitHub Action：对.md 文件执行 proselint/write-good 检查，提交错误文件验证功能生效
+\end{enumerate}
+\subsection{PyTorch 编程练习}
+\begin{enumerate}
+    \item 张量创建：用torch.randn(2,3)生成 2 行 3 列正态分布随机张量。
+    \item 用torch.tensor()从列表 / 数组创建指定值的张量
+    \item torch.nn.Linear(10,5)定义 10 输入 5 输出的线性层搭建神经网络
+    \item torch.optim.Adam(model.parameters(), lr=1e-3)为模型配置 Adam 优化器
+    \item tensor.view(3,4)或tensor.reshape(3,4)调整张量形状（需元素总数匹配）
+    \item torch.randperm(100)生成 0-99 的随机排列，用于数据集打乱
+    \item torch.nn.functional.relu(tensor)对张量应用 ReLU 激活函数
+    \item tensor + 2为张量所有元素统一加 2
+    \item tensor.argmax()获取张量中最大值的索引位置
+    \item torch.mean(tensor)计算张量所有元素的平均值
+    
+\end{enumerate}
+
+\section{练习结果}
+\subsection{调试及性能分析练习结果}
+\begin{itemize}
+\item 查超户记录：journalctl获近 1 天 sudo 操作与 root 登录日志。
+\item PDB 调试：熟练用 list、next 等命令完成基础调试。
+\item 端口处理：lsof找 4444 端口 PID，kill终止进程。
+\item 网络分析：Wireshark 捕获curl ipinfo.io的 HTTP 请求与响应。
+\item GitHub Pages：完成页面发布，Action 自动 shellcheck 检查 shell 文件。
+\end{itemize}
+
+\subsection{元编程演示实验练习结果}
+\begin{itemize}
+\item Makefile clean：make clean删除 paper.pdf 及临时文件。
+\item Rust 版本：用～、* 等语法实现不同版本控制。
+\item pre-commit：构建失败拦截提交。
+\item GitHub Pages：页面自动发布 + shellcheck 检查。
+\item 自定义 Action：.md 文件 proselint 检查，错误文件触发报错。
+\end{itemize}
+
+\subsection{PyTorch 编程练习结果}
+\begin{itemize}
+\item 随机张量：torch.randn(2,3)生成 2 行 3 列正态分布张量。
+\item 指定张量：从列表创建对应值张量。
+\item 线性层 / 优化器：成功定义线性层、配置 Adam 优化器。
+\item 张量操作：变形、ReLU 激活、元素加值等操作均生效。
+\item 计算：argmax()、mean()正确返回结果，randperm(100)生成随机序列。
+\end{itemize}
+
+\section{解题感悟}
+\begin{enumerate}
+    \item 调试分析：系统命令（journalctl、lsof）和工具（Wireshark、PDB）是定位问题核心，GitHub Action 自动化检查能提前规避代码问题；
+    \item 元编程实验：Makefile 伪目标、Git 钩子、自定义 Action，本质是用工具链规范流程，减少人工失误；
+    \item PyTorch 编程：张量操作是基础，网络层、优化器等组件调用需关注参数匹配，实践中需熟练结合 API 特性。
+\end{enumerate}
+\end{document}
+
+
+
+
